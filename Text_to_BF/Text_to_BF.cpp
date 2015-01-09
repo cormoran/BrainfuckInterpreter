@@ -16,7 +16,7 @@ int main(int argc,char **argv){
   while(getline(ifs,input)){
     input.push_back('\n');
     for(int i=0;i<input.size();i++){
-      int diff=(int)input[i]-(int)value+256;
+      int diff=abs((int)input[i]-(int)value+256) - abs((int)value+256-(int)input[i]);
       //incrementしたほうが近い場合
       if(diff>0){
 	while(value!=input[i]){++value;output.push_back('+');}
@@ -25,7 +25,7 @@ int main(int argc,char **argv){
       else if(diff<0){
 	while(value!=input[i]){--value;output.push_back('-');}
       }
-      output.push_back('.');
+      output+=".\n";
     }    
   }
   ifs.close();
